@@ -1,0 +1,13 @@
+{
+    "name": "shakhawat/team",
+    "description": "this is a plugin to display team members",
+    "type": "plugin",
+    "license": "gplv3",
+    "autoload": {
+        "psr-4": {
+            "Shakhawat\\Team\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}

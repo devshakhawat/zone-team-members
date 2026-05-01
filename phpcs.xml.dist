@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards for Team Members Plugin">
+	<description>PHP_CodeSniffer ruleset for the Team Members plugin.</description>
+
+	<!-- Exclude paths -->
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+
+	<!-- Configs -->
+	<config name="minimum_supported_wp_version" value="6.0"/>
+
+	<!-- Rules -->
+	<rule ref="WordPress">
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+	</rule>
+
+	<!-- Check all PHP files in directory -->
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="ps"/>
+
+	<file>.</file>
+</ruleset>
