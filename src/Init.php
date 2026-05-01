@@ -47,5 +47,6 @@ class Init {
 	public function __construct() {
 
 		$this->posttype = new PostType();
+		new Fields();
 	}
 }
