@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: Team Members
+ * Plugin Name: Zone7 Team Members
  * Plugin URI:  https://example.com/
  * Description: A custom plugin to display team members.
  * Version:     1.0.0
  * Author:      Shakhawat
  * Author URI:  https://example.com/
  * License:     GPLv3
- * Text Domain: teamzone
+ * Text Domain: teamzone7
  *
  * @package TeamMembers
  */
