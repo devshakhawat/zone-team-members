@@ -45,7 +45,6 @@ class Fields {
 		// Add a nonce field for security.
 		wp_nonce_field( 'team_member_meta_box_nonce', 'team_member_meta_box_nonce_field' );
 
-		$full_name = get_post_meta( $post->ID, '_team_member_full_name', true );
 		$position  = get_post_meta( $post->ID, '_team_member_position', true );
 		$bio       = get_post_meta( $post->ID, '_team_member_bio', true );
 		$picture   = get_post_meta( $post->ID, '_team_member_picture', true );
@@ -53,10 +52,6 @@ class Fields {
 
 		?>
 		<div class="team-member-field-group">
-			<p>
-				<label for="team_member_full_name"><?php esc_html_e( 'Full Name', 'teamzone' ); ?></label><br>
-				<input type="text" id="team_member_full_name" name="team_member_full_name" value="<?php echo esc_attr( $full_name ); ?>" class="widefat">
-			</p>
 			<p>
 				<label for="team_member_position"><?php esc_html_e( 'Position', 'teamzone' ); ?></label><br>
 				<input type="text" id="team_member_position" name="team_member_position" value="<?php echo esc_attr( $position ); ?>" class="widefat">
@@ -118,10 +113,6 @@ class Fields {
 		}
 
 		// Sanitize and save fields.
-		if ( isset( $_POST['team_member_full_name'] ) ) {
-			update_post_meta( $post_id, '_team_member_full_name', sanitize_text_field( $_POST['team_member_full_name'] ) );
-		}
-
 		if ( isset( $_POST['team_member_position'] ) ) {
 			update_post_meta( $post_id, '_team_member_position', sanitize_text_field( $_POST['team_member_position'] ) );
 		}

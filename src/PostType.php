@@ -19,6 +19,8 @@ class PostType {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_team_member_post_type' ) );
+		add_filter( 'manage_team_member_posts_columns', array( $this, 'add_custom_columns' ) );
+		add_action( 'manage_team_member_posts_custom_column', array( $this, 'render_custom_columns' ), 10, 2 );
 	}
 
 	/**
@@ -60,5 +62,47 @@ class PostType {
 		);
 
 		register_post_type( 'team_member', $args );
+	}
+
+	/**
+	 * Add custom columns to the 'team_member' list page.
+	 *
+	 * @param array $columns Existing columns.
+	 * @return array Modified columns.
+	 */
+	public function add_custom_columns( $columns ) {
+		$new_columns = array();
+		foreach ( $columns as $key => $value ) {
+			$new_columns[ $key ] = $value;
+			if ( 'title' === $key ) {
+				$new_columns['image']    = __( 'Image', 'teamzone' );
+				$new_columns['position'] = __( 'Position', 'teamzone' );
+			}
+		}
+		return $new_columns;
+	}
+
+	/**
+	 * Render custom column content.
+	 *
+	 * @param string $column  Column name.
+	 * @param int    $post_id Post ID.
+	 */
+	public function render_custom_columns( $column, $post_id ) {
+		switch ( $column ) {
+			case 'image':
+				$picture_id = get_post_meta( $post_id, '_team_member_picture', true );
+				if ( $picture_id ) {
+					echo wp_get_attachment_image( $picture_id, array( 50, 50 ) );
+				} else {
+					echo __( 'No Image', 'teamzone' );
+				}
+				break;
+
+			case 'position':
+				$position = get_post_meta( $post_id, '_team_member_position', true );
+				echo esc_html( $position ? $position : '—' );
+				break;
+		}
 	}
 }

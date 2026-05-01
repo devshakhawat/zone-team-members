@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Register assets
  *
@@ -9,16 +9,15 @@ namespace Shakhawat\Team;
 
 class Assets {
 
-    /**
-	 * PostType constructor.
+	/**
+	 * Assets constructor.
 	 */
 	public function __construct() {
-		
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ) );
 	}
 
-    /**
+	/**
 	 * Enqueue admin scripts and styles.
 	 *
 	 * @param string $hook The current admin page hook.
