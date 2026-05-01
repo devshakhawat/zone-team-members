@@ -48,5 +48,6 @@ class Init {
 
 		$this->posttype = new PostType();
 		new Fields();
+		new Assets();
 	}
 }

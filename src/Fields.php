@@ -20,31 +20,6 @@ class Fields {
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_team_member_meta_box' ) );
 		add_action( 'save_post', array( $this, 'save_team_member_meta' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
-	}
-
-	/**
-	 * Enqueue admin scripts for media uploader.
-	 *
-	 * @param string $hook The current admin page hook.
-	 */
-	public function enqueue_admin_scripts( $hook ) {
-		global $post_type;
-
-		if ( 'team_member' !== $post_type ) {
-			return;
-		}
-
-		if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
-			wp_enqueue_media();
-			wp_enqueue_script(
-				'team-member-admin',
-				plugin_dir_url( dirname( __FILE__ ) ) . 'assets/js/admin.js',
-				array( 'jquery' ),
-				'1.0.0',
-				true
-			);
-		}
 	}
 
 	/**
