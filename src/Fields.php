@@ -111,10 +111,6 @@ class Fields {
 				<button type="button" class="button" id="team_member_picture_remove" style="display: <?php echo $picture ? 'inline-block' : 'none'; ?>;"><?php esc_html_e( 'Remove Image', 'teamzone' ); ?></button>
 			</p>
 		</div>
-		<style>
-			.team-member-field-group p { margin-bottom: 15px; }
-			.team-member-field-group label { font-weight: bold; }
-		</style>
 		<?php
 	}
 

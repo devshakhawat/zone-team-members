@@ -55,8 +55,8 @@ class PostType {
 			'hierarchical'       => false,
 			'menu_position'      => null,
 			'menu_icon'          => 'dashicons-groups',
-			'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-			'show_in_rest'       => true,
+			'supports'           => array( 'title' ),
+			'show_in_rest'       => false,
 		);
 
 		register_post_type( 'team_member', $args );
