@@ -4,20 +4,23 @@ Zone7 Team Members is a lightweight and flexible WordPress plugin designed to he
 
 ## Installation Instructions
 
-1. **Upload the Plugin:**
-   - Download the plugin as a ZIP file.
-   - Go to your WordPress Dashboard, navigate to **Plugins > Add New**.
-   - Click **Upload Plugin** and select the ZIP file.
-   - Alternatively, unzip the file and upload the \`zone-team-members\` folder to your \`/wp-content/plugins/\` directory via FTP.
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/devshakhawat/zone-team-members.git
+    ```
+2.  **Navigate to the Plugin Directory:**
+    ```bash
+    cd zone-team-members
+    ```
+3.  **Install Dependencies:**
+    ```bash
+    composer install
+    ```
+4.  **Activate the Plugin:**
+    - Go to your WordPress Dashboard, navigate to **Plugins**.
+    - Find **Zone7 Team Members** and click **Activate**.
+    - **Note:** Upon activation, 12 dummy team members will be automatically created to help you get started.
 
-2. **Activate the Plugin:**
-   - Once uploaded, click **Activate** on the Plugins page.
-
-3. **Install Dependencies (For Developers):**
-   - If you are working in a development environment, navigate to the plugin directory and run:
-     \`\`\`bash
-     composer install
-     \`\`\`
 
 ## Usage Instructions
 
