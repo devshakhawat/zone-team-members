@@ -173,5 +173,45 @@
 
 .team-member-archive-container .pagination {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
+}
+
+.team-member-archive-container .pagination .page-numbers {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 4px;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.team-member-archive-container .pagination .page-numbers:hover {
+    background: #f0f0f0;
+    border-color: #bbb;
+    color: #046bd2;
+}
+
+.team-member-archive-container .pagination .page-numbers.current {
+    background: #046bd2;
+    border-color: #046bd2;
+    color: #fff;
+    font-weight: bold;
+}
+
+.team-member-archive-container .pagination .page-numbers.dots {
+    border: none;
+    background: transparent;
+    padding: 8px 10px;
+    color: #999;
+}
+
+@media (max-width: 480px) {
+    .team-member-archive-container .pagination .page-numbers {
+        padding: 6px 12px;
+        margin: 0 2px;
+        font-size: 0.85rem;
+    }
 }

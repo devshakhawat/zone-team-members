@@ -5,6 +5,8 @@
  * @package TeamMembers
  */
 
+global $wp_query;
+
 get_header(); ?>
 
 <div class="team-member-archive-container">
