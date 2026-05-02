@@ -31,3 +31,20 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 if ( class_exists( 'Shakhawat\\Team\\Init' ) ) {
 	\Shakhawat\Team\Init::get_instance();
 }
+
+/**
+ * Register activation hook.
+ */
+register_activation_hook( __FILE__, 'zteam_activate_plugin' );
+
+/**
+ * Activation logic.
+ */
+function zteam_activate_plugin() {
+	if ( class_exists( 'Shakhawat\\Team\\Admin' ) ) {
+		$admin = new \Shakhawat\Team\Admin();
+		if ( ! $admin->is_dummy_data_imported() ) {
+			$admin->import_dummy_data();
+		}
+	}
+}

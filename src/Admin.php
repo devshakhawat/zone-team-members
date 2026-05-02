@@ -127,7 +127,7 @@ class Admin {
 	 *
 	 * @return bool
 	 */
-	private function is_dummy_data_imported() {
+	public function is_dummy_data_imported() {
 		$posts = get_posts(
 			array(
 				'post_type'      => 'team_member',
@@ -147,7 +147,7 @@ class Admin {
 	/**
 	 * Import dummy team members.
 	 */
-	private function import_dummy_data() {
+	public function import_dummy_data() {
 		$images_dir = ZTEAM_PLUGIN_DIR . 'assets/images/';
 		$images     = array(
 			'zteam-member-1.jpg'  => array( 'Name' => 'John Doe', 'Position' => 'CEO', 'Bio' => 'John is the CEO of Zone7.' ),
