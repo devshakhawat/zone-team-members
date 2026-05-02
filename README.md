@@ -38,7 +38,7 @@ To display your team members, use the `[team_members]` shortcode in any page, po
 - `show_all_button`: (Boolean) Whether to display the "See All" button that loads all remaining members via AJAX. (Default: `true`)
 
 **Example:**
-`[team_members number="4" image_position="bottom" show_all_button="false"]`
+`[team_members number="8" image_position="top" show_all_button="true"]`
 
 ## Design Selection
 
