@@ -34,6 +34,11 @@
     font-size: 1.25rem;
 }
 
+.team-member-details .team-member-name a {
+    text-decoration: none;
+    color: #046bd2;
+}
+
 .team-member-position {
     color: #666;
     margin-bottom: 15px;

@@ -47,7 +47,7 @@ class Admin {
 		<div class="wrap">
 			<div class="zteam-dummy-data-wrap">
 				<h1><?php esc_html_e( 'Install Demo Data', 'teamzone' ); ?></h1>
-				<p class="subtitle"><?php esc_html_e( 'Quick start with Zone7 Plugins by installing the demo data', 'teamzone' ); ?></p>
+				<p class="zone-subtitle"><?php esc_html_e( 'Quick start with Zone7 Plugins by installing the demo data', 'teamzone' ); ?></p>
 
 				<div id="zteam-message-container"></div>
 
