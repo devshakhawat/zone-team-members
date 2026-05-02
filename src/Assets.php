@@ -68,6 +68,23 @@ class Assets {
 			array(),
 			ZTEAM_VERSION
 		);
+
+		wp_enqueue_script(
+			'team-member-frontend',
+			ZTEAM_PLUGIN_URI . '/assets/js/frontend.js',
+			array( 'jquery' ),
+			ZTEAM_VERSION,
+			true
+		);
+
+		wp_localize_script(
+			'team-member-frontend',
+			'zteam_ajax',
+			array(
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'zteam_see_all_nonce' ),
+			)
+		);
 	}
 
 }

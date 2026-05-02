@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 ?>
 
-<div class="team-members-container">
+<div class="team-members-container" data-image-position="<?php echo esc_attr( $atts['image_position'] ); ?>">
 	<div class="team-members-grid">
 		<?php while ( $query->have_posts() ) : $query->the_post(); 
 			$position  = get_post_meta( get_the_ID(), '_team_member_position', true );
@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php if ( $show_all_button ) : ?>
 		<div class="team-members-footer">
-			<a href="<?php echo esc_url( get_post_type_archive_link( 'team_member' ) ); ?>" class="button team-member-see-all">
+			<a href="#" class="button team-member-see-all" id="zteam-see-all">
 				<?php esc_html_e( 'See All', 'teamzone' ); ?>
 			</a>
 		</div>
