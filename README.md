@@ -4,7 +4,7 @@ Zone7 Team Members is a lightweight and flexible WordPress plugin designed to he
 
 ## Installation Instructions
 
-1.  **Clone the Repository:**
+1.  **Clone the Repository inside plugins folder:**
     ```bash
     git clone https://github.com/devshakhawat/zone-team-members.git
     ```
@@ -30,24 +30,24 @@ Zone7 Team Members is a lightweight and flexible WordPress plugin designed to he
 - You can add the team member's name (title), position, biography, and a profile picture.
 
 ### Using the Shortcode
-To display your team members, use the \`[team_members]\` shortcode in any page, post, or widget area.
+To display your team members, use the `[team_members]` shortcode in any page, post, or widget area.
 
 #### Shortcode Parameters:
-- \`number\`: (Integer) The total number of team members to display. (Default: \`8\`)
-- \`image_position\`: (String) The layout of the image relative to the content. Options: \`top\`, \`bottom\`. (Default: \`top\`)
-- \`show_all_button\`: (Boolean) Whether to display the "See All" button that loads all remaining members via AJAX. (Default: \`true\`)
+- `number`: (Integer) The total number of team members to display. (Default: `8`)
+- `image_position`: (String) The layout of the image relative to the content. Options: `top`, `bottom`. (Default: `top`)
+- `show_all_button`: (Boolean) Whether to display the "See All" button that loads all remaining members via AJAX. (Default: `true`)
 
 **Example:**
-\`[team_members number="4" image_position="bottom" show_all_button="false"]\`
+`[team_members number="4" image_position="bottom" show_all_button="false"]`
 
 ## Design Selection
 
-The plugin offers two distinct layout designs for team member items, controlled by the \`image_position\` parameter:
+The plugin offers two distinct layout designs for team member items, controlled by the `image_position` parameter:
 
-### Top Layout (\`image_position="top"\`)
+### Top Layout (`image_position="top"`)
 This is the default layout. The team member's profile picture is displayed prominently at the top of the card, followed by their name, position, and bio. This is ideal for a classic, clean grid look.
 
-### Bottom Layout (\`image_position="bottom"\`)
+### Bottom Layout (`image_position="bottom"`)
 In this layout, the image is moved below the name and position. This provides a modern alternative that emphasizes the team member's details first.
 
 ## Bonus Features
