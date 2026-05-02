@@ -53,7 +53,7 @@ class PostType {
 			'query_var'          => true,
 			'rewrite'            => array( 'slug' => 'team-members' ),
 			'capability_type'    => 'post',
-			'has_archive'        => true,
+			'has_archive'        => 'team-members',
 			'hierarchical'       => false,
 			'menu_position'      => null,
 			'menu_icon'          => 'dashicons-groups',
