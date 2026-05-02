@@ -32,7 +32,7 @@ class TemplateLoader {
 		global $post;
 
 		if ( is_singular( 'team_member' ) ) {
-			$plugin_template = ZTEAM_PLUGIN_DIR . 'templates/single-team_member.php';
+			$plugin_template = ZTEAM_PLUGIN_DIR . 'templates/single-team-member.php';
 			if ( file_exists( $plugin_template ) ) {
 				return $plugin_template;
 			}

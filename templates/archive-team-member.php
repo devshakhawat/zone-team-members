@@ -7,8 +7,8 @@
 
 get_header(); ?>
 
-<div class="container" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
-	<header class="archive-header" style="margin-bottom: 40px; text-align: center;">
+<div class="team-member-archive-container">
+	<header class="archive-header">
 		<h1 class="archive-title"><?php post_type_archive_title(); ?></h1>
 	</header>
 
@@ -52,7 +52,7 @@ get_header(); ?>
 				<?php endwhile; ?>
 			</div>
 
-			<div class="pagination" style="text-align: center; margin-top: 30px;">
+			<div class="pagination">
 				<?php
 				echo paginate_links(
 					array(

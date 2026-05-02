@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin logic for Dummy Data management.
+ * Dummy Data management logic.
  *
  * @package TeamMembers
  */
@@ -8,14 +8,14 @@
 namespace Shakhawat\Team;
 
 /**
- * Class Admin
+ * Class DummyData
  *
- * Handles admin menu and dummy data import/removal.
+ * Handles dummy data import/removal.
  */
-class Admin {
+class DummyData {
 
 	/**
-	 * Admin constructor.
+	 * DummyData constructor.
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu_pages' ) );

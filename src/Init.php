@@ -51,6 +51,6 @@ class Init {
 		new Assets();
 		new Shortcode();
 		new TemplateLoader();
-		new Admin();
+		new DummyData();
 	}
 }

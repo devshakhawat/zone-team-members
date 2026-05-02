@@ -17,29 +17,33 @@ while ( have_posts() ) :
 	?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'team-member-single' ); ?>>
-		<div class="container" style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
-			<header class="entry-header" style="text-align: center; margin-bottom: 30px;">
+		<div class="container">
+			<header class="entry-header">
 				<h1 class="entry-title"><?php the_title(); ?></h1>
 				<?php if ( $position ) : ?>
-					<div class="team-member-position" style="font-size: 1.2rem; color: #666; margin-top: 10px;">
+					<div class="team-member-position">
 						<strong><?php echo esc_html( $position ); ?></strong>
 					</div>
 				<?php endif; ?>
 			</header>
 
-			<div class="entry-content" style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
+			<div class="entry-content">
 				<?php if ( $image ) : ?>
 					<div class="team-member-picture">
 						<?php echo $image; ?>
 					</div>
 				<?php endif; ?>
 
-				<div class="team-member-bio-full" style="line-height: 1.8; color: #333;">
-					<?php echo wp_kses_post( $bio ); ?>
+				<div class="team-member-bio-full">
+					<?php 
+					if ( ! empty( $bio ) ) {
+						echo apply_filters( 'the_content', $bio ); 
+					}
+					?>
 				</div>
 			</div>
 
-			<footer class="entry-footer" style="margin-top: 40px; text-align: center;">
+			<footer class="entry-footer">
 				<a href="<?php echo esc_url( get_post_type_archive_link( 'team_member' ) ); ?>" class="button">
 					<?php esc_html_e( '&larr; Back to Team', 'teamzone' ); ?>
 				</a>
