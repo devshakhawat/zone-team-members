@@ -2,6 +2,9 @@
 
 Zone7 Team Members is a lightweight and flexible WordPress plugin designed to help you manage and display your team members with ease. It features a custom post type for team member profiles and a powerful shortcode for displaying them on any page or post.
 
+## Video Overview: How Plugin Works
+https://www.awesomescreenshot.com/video/52126896?key=e86839492734876b29f8b227a5129fdc
+
 ## Installation Instructions
 
 1.  **Clone the Repository inside plugins folder:**
