@@ -49,26 +49,66 @@ class Admin {
 			}
 		}
 
+		$is_imported = $this->is_dummy_data_imported();
+
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'Dummy Data Management', 'teamzone' ); ?></h1>
-			<p><?php esc_html_e( 'Use the buttons below to import or remove dummy team members.', 'teamzone' ); ?></p>
+			<div class="zteam-dummy-data-wrap">
+				<h1><?php esc_html_e( 'Install Demo Data', 'teamzone' ); ?></h1>
+				<p class="subtitle"><?php esc_html_e( 'Quick start with Zone7 Plugins by installing the demo data', 'teamzone' ); ?></p>
 
-			<form method="post" action="">
-				<?php wp_nonce_field( 'team_dummy_data_action', 'team_dummy_data_nonce' ); ?>
-				<input type="hidden" name="team_action" value="import">
-				<button type="submit" class="button button-primary"><?php esc_html_e( 'Import Dummy Data', 'teamzone' ); ?></button>
-			</form>
+				<h2><?php esc_html_e( 'Import All Data', 'teamzone' ); ?></h2>
+				<p class="import-info"><?php esc_html_e( 'Following data will get imported:', 'teamzone' ); ?></p>
 
-			<br>
+				<ul>
+					<li><?php esc_html_e( '12 Team Members', 'teamzone' ); ?></li>
+					<li><?php esc_html_e( '12 Attachments for Team Members', 'teamzone' ); ?></li>
+				</ul>
 
-			<form method="post" action="">
-				<?php wp_nonce_field( 'team_dummy_data_action', 'team_dummy_data_nonce' ); ?>
-				<input type="hidden" name="team_action" value="remove">
-				<button type="submit" class="button button-secondary" onclick="return confirm('<?php esc_attr_e( 'Are you sure you want to remove all dummy team members?', 'teamzone' ); ?>');"><?php esc_html_e( 'Remove All Dummy Data', 'teamzone' ); ?></button>
-			</form>
+				<div class="zteam-dummy-data-actions">
+					<form method="post" action="">
+						<?php wp_nonce_field( 'team_dummy_data_action', 'team_dummy_data_nonce' ); ?>
+						<input type="hidden" name="team_action" value="import">
+						<button type="submit" class="button button-import" <?php disabled( $is_imported ); ?>>
+							<span class="dashicons <?php echo $is_imported ? 'dashicons-cloud-saved' : 'dashicons-cloud-upload'; ?>"></span>
+							<?php echo $is_imported ? esc_html__( 'ALREADY IMPORTED', 'teamzone' ) : esc_html__( 'IMPORT DATA', 'teamzone' ); ?>
+						</button>
+					</form>
+
+					<form method="post" action="">
+						<?php wp_nonce_field( 'team_dummy_data_action', 'team_dummy_data_nonce' ); ?>
+						<input type="hidden" name="team_action" value="remove">
+						<button type="submit" class="button button-remove" onclick="return confirm('<?php esc_attr_e( 'Are you sure you want to remove all dummy team members?', 'teamzone' ); ?>');">
+							<span class="dashicons dashicons-trash"></span>
+							<?php esc_html_e( 'REMOVE DATA', 'teamzone' ); ?>
+						</button>
+					</form>
+				</div>
+			</div>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Check if dummy data has already been imported.
+	 *
+	 * @return bool
+	 */
+	private function is_dummy_data_imported() {
+		$posts = get_posts(
+			array(
+				'post_type'      => 'team_member',
+				'posts_per_page' => 1,
+				'meta_query'     => array(
+					array(
+						'key'   => '_is_dummy_data',
+						'value' => 'yes',
+					),
+				),
+			)
+		);
+
+		return ! empty( $posts );
 	}
 
 	/**

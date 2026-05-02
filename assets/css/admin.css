@@ -1,1 +1,96 @@
 .team-member-field-group label { font-weight: bold; }
+
+/* Dummy Data Page Styles */
+.zteam-dummy-data-wrap {
+    max-width: 800px;
+    margin-top: 20px;
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.zteam-dummy-data-wrap h1 {
+    font-size: 28px;
+    font-weight: 500;
+    color: #32373c;
+    margin-bottom: 5px;
+}
+
+.zteam-dummy-data-wrap .subtitle {
+    font-size: 16px;
+    color: #72777c;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.zteam-dummy-data-wrap h2 {
+    font-size: 22px;
+    font-weight: 400;
+    color: #32373c;
+    margin-bottom: 10px;
+}
+
+.zteam-dummy-data-wrap .import-info {
+    font-size: 15px;
+    color: #555d66;
+    margin-bottom: 15px;
+}
+
+.zteam-dummy-data-wrap ul {
+    margin-bottom: 30px;
+}
+
+.zteam-dummy-data-wrap ul li {
+    font-size: 15px;
+    color: #555d66;
+    margin-bottom: 8px;
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.zteam-dummy-data-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.zteam-dummy-data-actions .button {
+    height: auto;
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.zteam-dummy-data-actions .button-import {
+    background-color: #5ccb84;
+    color: #fff;
+}
+
+.zteam-dummy-data-actions .button-import:hover {
+    background-color: #4eb975;
+    color: #fff;
+}
+
+.zteam-dummy-data-actions .button-remove {
+    background-color: #ef533a;
+    color: #fff;
+}
+
+.zteam-dummy-data-actions .button-remove:hover {
+    background-color: #d8432e;
+    color: #fff;
+}
+
+.zteam-dummy-data-actions .button .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}

@@ -25,27 +25,27 @@ class Assets {
 	public function enqueue_admin_scripts( $hook ) {
 		global $post_type;
 
-		if ( 'team_member' !== $post_type ) {
-			return;
-		}
+        pretty_log( $hook, 'ggg' );
 
-		if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
-			wp_enqueue_media();
+		if ( 'team_member' === $post_type || 'team_member_page_team-dummy-data' === $hook ) {
+			if ( 'post.php' === $hook || 'post-new.php' === $hook || 'team_member_page_team-dummy-data' === $hook ) {
+				wp_enqueue_media();
 
-			wp_enqueue_style(
-				'team-member-admin',
-				ZTEAM_PLUGIN_URI . '/assets/css/admin.css',
-				array(),
-				ZTEAM_VERSION
-			);
+				wp_enqueue_style(
+					'team-member-admin',
+					ZTEAM_PLUGIN_URI . '/assets/css/admin.css',
+					array(),
+					ZTEAM_VERSION
+				);
 
-			wp_enqueue_script(
-				'team-member-admin',
-				ZTEAM_PLUGIN_URI . '/assets/js/admin.js',
-				array( 'jquery' ),
-				ZTEAM_VERSION,
-				true
-			);
+				wp_enqueue_script(
+					'team-member-admin',
+					ZTEAM_PLUGIN_URI . '/assets/js/admin.js',
+					array( 'jquery' ),
+					ZTEAM_VERSION,
+					true
+				);
+			}
 		}
 	}
 
