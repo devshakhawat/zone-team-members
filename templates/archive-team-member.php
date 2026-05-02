@@ -31,7 +31,7 @@ get_header(); ?>
 						<?php if ( $image ) : ?>
 							<div class="team-member-image">
 								<a href="<?php echo esc_url( $permalink ); ?>">
-									<?php echo $image; ?>
+									<?php echo wp_kses_post( $image ); ?>
 								</a>
 							</div>
 						<?php endif; ?>
@@ -45,7 +45,7 @@ get_header(); ?>
 							<?php endif; ?>
 							<?php if ( $bio ) : ?>
 								<div class="team-member-bio">
-									<?php echo wp_trim_words( wp_kses_post( $bio ), 20 ); ?>
+									<?php echo wp_kses_post( wp_trim_words( $bio, 20 ) ); ?>
 								</div>
 							<?php endif; ?>
 						</div>
@@ -56,14 +56,16 @@ get_header(); ?>
 
 			<div class="pagination">
 				<?php
-				echo paginate_links(
-					array(
-						'base'      => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
-						'format'    => '?paged=%#%',
-						'current'   => max( 1, get_query_var( 'paged' ) ),
-						'total'     => $wp_query->max_num_pages,
-						'prev_text' => '&laquo; ' . __( 'Prev', 'teamzone' ),
-						'next_text' => __( 'Next', 'teamzone' ) . ' &raquo;',
+				echo wp_kses_post(
+					paginate_links(
+						array(
+							'base'      => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+							'format'    => '?paged=%#%',
+							'current'   => max( 1, get_query_var( 'paged' ) ),
+							'total'     => $wp_query->max_num_pages,
+							'prev_text' => '&laquo; ' . __( 'Prev', 'teamzone' ),
+							'next_text' => __( 'Next', 'teamzone' ) . ' &raquo;',
+						)
 					)
 				);
 				?>
@@ -74,4 +76,5 @@ get_header(); ?>
 	<?php endif; ?>
 </div>
 
-<?php get_footer();
+<?php
+get_footer();

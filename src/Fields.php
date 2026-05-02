@@ -45,9 +45,9 @@ class Fields {
 		// Add a nonce field for security.
 		wp_nonce_field( 'team_member_meta_box_nonce', 'team_member_meta_box_nonce_field' );
 
-		$position  = get_post_meta( $post->ID, '_team_member_position', true );
-		$bio       = get_post_meta( $post->ID, '_team_member_bio', true );
-		$picture   = get_post_meta( $post->ID, '_team_member_picture', true );
+		$position    = get_post_meta( $post->ID, '_team_member_position', true );
+		$bio         = get_post_meta( $post->ID, '_team_member_bio', true );
+		$picture     = get_post_meta( $post->ID, '_team_member_picture', true );
 		$picture_url = $picture ? wp_get_attachment_url( $picture ) : '';
 
 		?>
@@ -111,7 +111,7 @@ class Fields {
 	}
 
 	/**
-	 * Save Meta Box data.
+	 * Save the meta box data.
 	 *
 	 * @param int $post_id The post ID.
 	 */
@@ -122,7 +122,7 @@ class Fields {
 		}
 
 		// Verify that the nonce is valid.
-		if ( ! wp_verify_nonce( $_POST['team_member_meta_box_nonce_field'], 'team_member_meta_box_nonce' ) ) {
+		if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['team_member_meta_box_nonce_field'] ) ), 'team_member_meta_box_nonce' ) ) {
 			return;
 		}
 
@@ -140,15 +140,16 @@ class Fields {
 
 		// Sanitize and save fields.
 		if ( isset( $_POST['team_member_position'] ) ) {
-			update_post_meta( $post_id, '_team_member_position', sanitize_text_field( $_POST['team_member_position'] ) );
+			update_post_meta( $post_id, '_team_member_position', sanitize_text_field( wp_unslash( $_POST['team_member_position'] ) ) );
 		}
 
 		if ( isset( $_POST['team_member_bio'] ) ) {
-			update_post_meta( $post_id, '_team_member_bio', wp_kses_post( $_POST['team_member_bio'] ) );
+			update_post_meta( $post_id, '_team_member_bio', wp_kses_post( wp_unslash( $_POST['team_member_bio'] ) ) );
 		}
 
 		if ( isset( $_POST['team_member_picture'] ) ) {
-			update_post_meta( $post_id, '_team_member_picture', sanitize_text_field( $_POST['team_member_picture'] ) );
+			update_post_meta( $post_id, '_team_member_picture', sanitize_text_field( wp_unslash( $_POST['team_member_picture'] ) ) );
 		}
 	}
 }
+

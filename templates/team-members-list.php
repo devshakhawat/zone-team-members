@@ -19,7 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="team-members-container" data-image-position="<?php echo esc_attr( $atts['image_position'] ); ?>">
 	<div class="team-members-grid">
-		<?php while ( $query->have_posts() ) : $query->the_post(); 
+		<?php
+		while ( $query->have_posts() ) :
+			$query->the_post();
 			$position  = get_post_meta( get_the_ID(), '_team_member_position', true );
 			$bio       = get_post_meta( get_the_ID(), '_team_member_bio', true );
 			$picture   = get_post_meta( get_the_ID(), '_team_member_picture', true );
@@ -31,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php if ( 'top' === $atts['image_position'] && $image ) : ?>
 					<div class="team-member-image">
 						<a href="<?php echo esc_url( $permalink ); ?>">
-							<?php echo $image; ?>
+							<?php echo wp_kses_post( $image ); ?>
 						</a>
 					</div>
 				<?php endif; ?>
@@ -45,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php endif; ?>
 					<?php if ( $bio ) : ?>
 						<div class="team-member-bio">
-							<?php echo wp_trim_words( wp_kses_post( $bio ), 20 ); ?>
+							<?php echo wp_kses_post( wp_trim_words( $bio, 20 ) ); ?>
 						</div>
 					<?php endif; ?>
 				</div>
@@ -53,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php if ( 'bottom' === $atts['image_position'] && $image ) : ?>
 					<div class="team-member-image">
 						<a href="<?php echo esc_url( $permalink ); ?>">
-							<?php echo $image; ?>
+							<?php echo wp_kses_post( $image ); ?>
 						</a>
 					</div>
 				<?php endif; ?>

@@ -56,9 +56,9 @@ class Shortcode {
 		}
 
 		ob_start();
-		
+
 		$template_path = ZTEAM_PLUGIN_DIR . 'templates/team-members-list.php';
-		
+
 		if ( file_exists( $template_path ) ) {
 			include $template_path;
 		} else {
@@ -76,7 +76,7 @@ class Shortcode {
 	public function ajax_load_all_members() {
 		check_ajax_referer( 'zteam_see_all_nonce', 'nonce' );
 
-		$image_position = isset( $_POST['image_position'] ) ? sanitize_text_field( $_POST['image_position'] ) : 'top';
+		$image_position = isset( $_POST['image_position'] ) ? sanitize_text_field( wp_unslash( $_POST['image_position'] ) ) : 'top';
 
 		$args = array(
 			'post_type'      => 'team_member',
@@ -100,7 +100,7 @@ class Shortcode {
 					<?php if ( 'top' === $image_position && $image ) : ?>
 						<div class="team-member-image">
 							<a href="<?php echo esc_url( $permalink ); ?>">
-								<?php echo $image; ?>
+								<?php echo wp_kses_post( $image ); ?>
 							</a>
 						</div>
 					<?php endif; ?>
@@ -114,7 +114,7 @@ class Shortcode {
 						<?php endif; ?>
 						<?php if ( $bio ) : ?>
 							<div class="team-member-bio">
-								<?php echo wp_trim_words( wp_kses_post( $bio ), 20 ); ?>
+								<?php echo wp_kses_post( wp_trim_words( $bio, 20 ) ); ?>
 							</div>
 						<?php endif; ?>
 					</div>
@@ -122,7 +122,7 @@ class Shortcode {
 					<?php if ( 'bottom' === $image_position && $image ) : ?>
 						<div class="team-member-image">
 							<a href="<?php echo esc_url( $permalink ); ?>">
-								<?php echo $image; ?>
+								<?php echo wp_kses_post( $image ); ?>
 							</a>
 						</div>
 					<?php endif; ?>

@@ -7,6 +7,9 @@
 
 namespace Shakhawat\Team;
 
+/**
+ * Assets class
+ */
 class Assets {
 
 	/**
@@ -24,8 +27,6 @@ class Assets {
 	 */
 	public function enqueue_admin_scripts( $hook ) {
 		global $post_type;
-
-        pretty_log( $hook, 'ggg' );
 
 		if ( 'team_member' === $post_type || 'team_member_page_team-dummy-data' === $hook ) {
 			if ( 'post.php' === $hook || 'post-new.php' === $hook || 'team_member_page_team-dummy-data' === $hook ) {
@@ -86,5 +87,4 @@ class Assets {
 			)
 		);
 	}
-
 }

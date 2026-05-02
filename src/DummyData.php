@@ -132,7 +132,7 @@ class DummyData {
 			array(
 				'post_type'      => 'team_member',
 				'posts_per_page' => 1,
-				'meta_query'     => array(
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array(
 						'key'   => '_is_dummy_data',
 						'value' => 'yes',
@@ -150,18 +150,66 @@ class DummyData {
 	public function import_dummy_data() {
 		$images_dir = ZTEAM_PLUGIN_DIR . 'assets/images/';
 		$images     = array(
-			'zteam-member-1.jpg'  => array( 'Name' => 'John Doe', 'Position' => 'CEO', 'Bio' => 'John is the CEO of Zone7.' ),
-			'zteam-member-2.jpg'  => array( 'Name' => 'Jane Smith', 'Position' => 'CTO', 'Bio' => 'Jane leads the technical team.' ),
-			'zteam-member-3.jpg'  => array( 'Name' => 'Michael Brown', 'Position' => 'Lead Developer', 'Bio' => 'Michael is an expert in WordPress.' ),
-			'zteam-member-4.jpg'  => array( 'Name' => 'Emily Davis', 'Position' => 'UI/UX Designer', 'Bio' => 'Emily creates beautiful designs.' ),
-			'zteam-member-5.jpg'  => array( 'Name' => 'Robert Wilson', 'Position' => 'Marketing Manager', 'Bio' => 'Robert handles all marketing efforts.' ),
-			'zteam-member-6.jpg'  => array( 'Name' => 'Sarah Johnson', 'Position' => 'Project Manager', 'Bio' => 'Sarah keeps everything on track.' ),
-			'zteam-member-7.jpg'  => array( 'Name' => 'William Jones', 'Position' => 'Frontend Developer', 'Bio' => 'William loves React and Vue.' ),
-			'zteam-member-8.jpg'  => array( 'Name' => 'Jessica Taylor', 'Position' => 'Backend Developer', 'Bio' => 'Jessica is a PHP wizard.' ),
-			'zteam-member-9.jpg'  => array( 'Name' => 'David Miller', 'Position' => 'SEO Specialist', 'Bio' => 'David optimizes our web presence.' ),
-			'zteam-member-10.jpg' => array( 'Name' => 'Linda Moore', 'Position' => 'Content Writer', 'Bio' => 'Linda writes engaging content.' ),
-			'zteam-member-11.jpg' => array( 'Name' => 'Richard Anderson', 'Position' => 'QA Engineer', 'Bio' => 'Richard ensures high quality.' ),
-			'zteam-member-12.jpg' => array( 'Name' => 'Karen Thomas', 'Position' => 'HR Manager', 'Bio' => 'Karen takes care of our team.' ),
+			'zteam-member-1.jpg'  => array(
+				'Name'     => 'John Doe',
+				'Position' => 'CEO',
+				'Bio'      => 'John is the CEO of Zone7.',
+			),
+			'zteam-member-2.jpg'  => array(
+				'Name'     => 'Jane Smith',
+				'Position' => 'CTO',
+				'Bio'      => 'Jane leads the technical team.',
+			),
+			'zteam-member-3.jpg'  => array(
+				'Name'     => 'Michael Brown',
+				'Position' => 'Lead Developer',
+				'Bio'      => 'Michael is an expert in WordPress.',
+			),
+			'zteam-member-4.jpg'  => array(
+				'Name'     => 'Emily Davis',
+				'Position' => 'UI/UX Designer',
+				'Bio'      => 'Emily creates beautiful designs.',
+			),
+			'zteam-member-5.jpg'  => array(
+				'Name'     => 'Robert Wilson',
+				'Position' => 'Marketing Manager',
+				'Bio'      => 'Robert handles all marketing efforts.',
+			),
+			'zteam-member-6.jpg'  => array(
+				'Name'     => 'Sarah Johnson',
+				'Position' => 'Project Manager',
+				'Bio'      => 'Sarah keeps everything on track.',
+			),
+			'zteam-member-7.jpg'  => array(
+				'Name'     => 'William Jones',
+				'Position' => 'Frontend Developer',
+				'Bio'      => 'William loves React and Vue.',
+			),
+			'zteam-member-8.jpg'  => array(
+				'Name'     => 'Jessica Taylor',
+				'Position' => 'Backend Developer',
+				'Bio'      => 'Jessica is a PHP wizard.',
+			),
+			'zteam-member-9.jpg'  => array(
+				'Name'     => 'David Miller',
+				'Position' => 'SEO Specialist',
+				'Bio'      => 'David optimizes our web presence.',
+			),
+			'zteam-member-10.jpg' => array(
+				'Name'     => 'Linda Moore',
+				'Position' => 'Content Writer',
+				'Bio'      => 'Linda writes engaging content.',
+			),
+			'zteam-member-11.jpg' => array(
+				'Name'     => 'Richard Anderson',
+				'Position' => 'QA Engineer',
+				'Bio'      => 'Richard ensures high quality.',
+			),
+			'zteam-member-12.jpg' => array(
+				'Name'     => 'Karen Thomas',
+				'Position' => 'HR Manager',
+				'Bio'      => 'Karen takes care of our team.',
+			),
 		);
 
 		foreach ( $images as $filename => $data ) {
@@ -211,7 +259,14 @@ class DummyData {
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 
 		$filename = basename( $file_path );
-		$upload   = wp_upload_bits( $filename, null, file_get_contents( $file_path ) );
+
+		// Use WP_Filesystem to read the file.
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			WP_Filesystem();
+		}
+
+		$upload = wp_upload_bits( $filename, null, $wp_filesystem->get_contents( $file_path ) );
 
 		if ( isset( $upload['error'] ) && $upload['error'] ) {
 			return false;
@@ -244,7 +299,7 @@ class DummyData {
 			array(
 				'post_type'      => 'team_member',
 				'posts_per_page' => -1,
-				'meta_query'     => array(
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array(
 						'key'   => '_is_dummy_data',
 						'value' => 'yes',
@@ -263,7 +318,7 @@ class DummyData {
 				'post_type'      => 'attachment',
 				'posts_per_page' => -1,
 				'post_status'    => 'any',
-				'meta_query'     => array(
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array(
 						'key'   => '_is_dummy_data',
 						'value' => 'yes',

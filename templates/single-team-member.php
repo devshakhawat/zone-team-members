@@ -30,14 +30,14 @@ while ( have_posts() ) :
 			<div class="entry-content">
 				<?php if ( $image ) : ?>
 					<div class="team-member-picture">
-						<?php echo $image; ?>
+						<?php echo wp_kses_post( $image ); ?>
 					</div>
 				<?php endif; ?>
 
 				<div class="team-member-bio-full">
-					<?php 
+					<?php
 					if ( ! empty( $bio ) ) {
-						echo apply_filters( 'the_content', $bio ); 
+						echo wp_kses_post( apply_filters( 'the_content', $bio ) );
 					}
 					?>
 				</div>

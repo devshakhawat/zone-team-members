@@ -95,7 +95,7 @@ class PostType {
 				if ( $picture_id ) {
 					echo wp_get_attachment_image( $picture_id, array( 50, 50 ) );
 				} else {
-					echo __( 'No Image', 'teamzone' );
+					echo esc_html__( 'No Image', 'teamzone' );
 				}
 				break;
 
