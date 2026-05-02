@@ -7,7 +7,7 @@
  * Author:      Shakhawat
  * Author URI:  https://example.com/
  * License:     GPLv3
- * Text Domain: teamzone7
+ * Text Domain: teamzone
  *
  * @package TeamMembers
  */
@@ -41,10 +41,10 @@ register_activation_hook( __FILE__, 'zteam_activate_plugin' );
  * Activation logic.
  */
 function zteam_activate_plugin() {
-	if ( class_exists( 'Shakhawat\\Team\\Admin' ) ) {
-		$admin = new \Shakhawat\Team\Admin();
-		if ( ! $admin->is_dummy_data_imported() ) {
-			$admin->import_dummy_data();
+	if ( class_exists( 'Shakhawat\\Team\\DummyData' ) ) {
+		$dummy_data = new \Shakhawat\Team\DummyData();
+		if ( ! $dummy_data->is_dummy_data_imported() ) {
+			$dummy_data->import_dummy_data();
 		}
 	}
 }
