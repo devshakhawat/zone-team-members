@@ -24,7 +24,9 @@ jQuery(document).ready(function($) {
             var attachment = mediaUploader.state().get('selection').first().toJSON();
             $('#team_member_picture').val(attachment.id);
             $('#team_member_picture_preview').attr('src', attachment.url).show();
+            $('.zteam-placeholder').hide();
             $('#team_member_picture_remove').show();
+            $('.zteam-image-preview-wrapper').addClass('has-image');
         });
 
         // Open the uploader dialog
@@ -35,7 +37,9 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         $('#team_member_picture').val('');
         $('#team_member_picture_preview').attr('src', '').hide();
+        $('.zteam-placeholder').show();
         $(this).hide();
+        $('.zteam-image-preview-wrapper').removeClass('has-image');
     });
 
     /**

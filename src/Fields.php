@@ -51,35 +51,61 @@ class Fields {
 		$picture_url = $picture ? wp_get_attachment_url( $picture ) : '';
 
 		?>
-		<div class="team-member-field-group">
-			<p>
-				<label for="team_member_position"><?php esc_html_e( 'Position', 'teamzone' ); ?></label><br>
-				<input type="text" id="team_member_position" name="team_member_position" value="<?php echo esc_attr( $position ); ?>" class="widefat">
-			</p>
-			<p>
-				<label for="team_member_bio"><?php esc_html_e( 'Bio', 'teamzone' ); ?></label><br>
-				<?php
-				wp_editor(
-					$bio,
-					'team_member_bio',
-					array(
-						'textarea_name' => 'team_member_bio',
-						'media_buttons' => false,
-						'textarea_rows' => 5,
-						'teeny'         => true,
-					)
-				);
-				?>
-			</p>
-			<p>
-				<label><?php esc_html_e( 'Picture', 'teamzone' ); ?></label><br>
-				<div class="team-member-image-preview" style="margin-bottom: 10px;">
-					<img src="<?php echo esc_url( $picture_url ); ?>" style="max-width: 150px; display: <?php echo $picture ? 'block' : 'none'; ?>;" id="team_member_picture_preview">
+		<div class="zteam-meta-box-wrap">
+			<div class="zteam-meta-row">
+				<div class="zteam-meta-label">
+					<label for="team_member_position"><?php esc_html_e( 'Position', 'teamzone' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Enter the team member\'s job title.', 'teamzone' ); ?></p>
 				</div>
-				<input type="hidden" name="team_member_picture" id="team_member_picture" value="<?php echo esc_attr( $picture ); ?>">
-				<button type="button" class="button" id="team_member_picture_upload"><?php esc_html_e( 'Upload Image', 'teamzone' ); ?></button>
-				<button type="button" class="button" id="team_member_picture_remove" style="display: <?php echo $picture ? 'inline-block' : 'none'; ?>;"><?php esc_html_e( 'Remove Image', 'teamzone' ); ?></button>
-			</p>
+				<div class="zteam-meta-field">
+					<input type="text" id="team_member_position" name="team_member_position" value="<?php echo esc_attr( $position ); ?>" class="widefat" placeholder="<?php esc_attr_e( 'e.g. Senior Developer', 'teamzone' ); ?>">
+				</div>
+			</div>
+
+			<div class="zteam-meta-row">
+				<div class="zteam-meta-label">
+					<label for="team_member_bio"><?php esc_html_e( 'Biography', 'teamzone' ); ?></label>
+					<p class="description"><?php esc_html_e( 'A short description about the team member.', 'teamzone' ); ?></p>
+				</div>
+				<div class="zteam-meta-field">
+					<?php
+					wp_editor(
+						$bio,
+						'team_member_bio',
+						array(
+							'textarea_name' => 'team_member_bio',
+							'media_buttons' => false,
+							'textarea_rows' => 5,
+							'teeny'         => true,
+						)
+					);
+					?>
+				</div>
+			</div>
+
+			<div class="zteam-meta-row">
+				<div class="zteam-meta-label">
+					<label><?php esc_html_e( 'Profile Picture', 'teamzone' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Upload or select a profile image.', 'teamzone' ); ?></p>
+				</div>
+				<div class="zteam-meta-field">
+					<div class="zteam-image-preview-wrapper <?php echo $picture ? 'has-image' : ''; ?>">
+						<div class="zteam-image-preview">
+							<img src="<?php echo esc_url( $picture_url ); ?>" id="team_member_picture_preview" style="<?php echo $picture ? '' : 'display: none;'; ?>">
+							<span class="zteam-placeholder dashicons dashicons-admin-users" style="<?php echo $picture ? 'display: none;' : ''; ?>"></span>
+						</div>
+						<div class="zteam-image-actions">
+							<input type="hidden" name="team_member_picture" id="team_member_picture" value="<?php echo esc_attr( $picture ); ?>">
+							<button type="button" class="button" id="team_member_picture_upload">
+								<span class="dashicons dashicons-upload"></span> <?php esc_html_e( 'Select Image', 'teamzone' ); ?>
+							</button>
+							<button type="button" class="button button-link-delete" id="team_member_picture_remove" style="<?php echo $picture ? '' : 'display: none;'; ?>">
+								<?php esc_html_e( 'Remove', 'teamzone' ); ?>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<?php
 	}
