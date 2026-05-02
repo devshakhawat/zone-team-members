@@ -52,6 +52,13 @@
 
 .zteam-dummy-data-actions {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.zteam-action-buttons {
+    display: flex;
     gap: 15px;
 }
 
@@ -79,6 +86,11 @@
     color: #fff;
 }
 
+.zteam-dummy-data-actions .button-import:disabled {
+    background-color: #a7e4bc;
+    cursor: not-allowed;
+}
+
 .zteam-dummy-data-actions .button-remove {
     background-color: #ef533a;
     color: #fff;
@@ -93,4 +105,22 @@
     font-size: 20px;
     width: 20px;
     height: 20px;
+}
+
+.zteam-loader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+.zteam-loader .spinner {
+    float: none;
+    margin: 0;
+    visibility: visible;
+}
+
+#zteam-message-container {
+    margin-bottom: 20px;
 }

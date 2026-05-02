@@ -19,6 +19,8 @@ class Admin {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu_pages' ) );
+		add_action( 'wp_ajax_team_import_data', array( $this, 'ajax_import_data' ) );
+		add_action( 'wp_ajax_team_remove_data', array( $this, 'ajax_remove_data' ) );
 	}
 
 	/**
@@ -39,16 +41,6 @@ class Admin {
 	 * Render the Dummy Data management page.
 	 */
 	public function render_dummy_data_page() {
-		if ( isset( $_POST['team_action'] ) && check_admin_referer( 'team_dummy_data_action', 'team_dummy_data_nonce' ) ) {
-			if ( 'import' === $_POST['team_action'] ) {
-				$this->import_dummy_data();
-				echo '<div class="updated"><p>' . esc_html__( 'Dummy data imported successfully.', 'teamzone' ) . '</p></div>';
-			} elseif ( 'remove' === $_POST['team_action'] ) {
-				$this->remove_dummy_data();
-				echo '<div class="updated"><p>' . esc_html__( 'All dummy data removed successfully.', 'teamzone' ) . '</p></div>';
-			}
-		}
-
 		$is_imported = $this->is_dummy_data_imported();
 
 		?>
@@ -56,6 +48,8 @@ class Admin {
 			<div class="zteam-dummy-data-wrap">
 				<h1><?php esc_html_e( 'Install Demo Data', 'teamzone' ); ?></h1>
 				<p class="subtitle"><?php esc_html_e( 'Quick start with Zone7 Plugins by installing the demo data', 'teamzone' ); ?></p>
+
+				<div id="zteam-message-container"></div>
 
 				<h2><?php esc_html_e( 'Import All Data', 'teamzone' ); ?></h2>
 				<p class="import-info"><?php esc_html_e( 'Following data will get imported:', 'teamzone' ); ?></p>
@@ -66,27 +60,66 @@ class Admin {
 				</ul>
 
 				<div class="zteam-dummy-data-actions">
-					<form method="post" action="">
-						<?php wp_nonce_field( 'team_dummy_data_action', 'team_dummy_data_nonce' ); ?>
-						<input type="hidden" name="team_action" value="import">
-						<button type="submit" class="button button-import" <?php disabled( $is_imported ); ?>>
+					<div class="zteam-action-buttons">
+						<button type="button" id="zteam-import-btn" class="button button-import" <?php disabled( $is_imported ); ?>>
 							<span class="dashicons <?php echo $is_imported ? 'dashicons-cloud-saved' : 'dashicons-cloud-upload'; ?>"></span>
-							<?php echo $is_imported ? esc_html__( 'ALREADY IMPORTED', 'teamzone' ) : esc_html__( 'IMPORT DATA', 'teamzone' ); ?>
+							<span class="button-text"><?php echo $is_imported ? esc_html__( 'ALREADY IMPORTED', 'teamzone' ) : esc_html__( 'IMPORT DATA', 'teamzone' ); ?></span>
 						</button>
-					</form>
 
-					<form method="post" action="">
-						<?php wp_nonce_field( 'team_dummy_data_action', 'team_dummy_data_nonce' ); ?>
-						<input type="hidden" name="team_action" value="remove">
-						<button type="submit" class="button button-remove" onclick="return confirm('<?php esc_attr_e( 'Are you sure you want to remove all dummy team members?', 'teamzone' ); ?>');">
+						<button type="button" id="zteam-remove-btn" class="button button-remove">
 							<span class="dashicons dashicons-trash"></span>
-							<?php esc_html_e( 'REMOVE DATA', 'teamzone' ); ?>
+							<span class="button-text"><?php esc_html_e( 'REMOVE DATA', 'teamzone' ); ?></span>
 						</button>
-					</form>
+					</div>
+					
+					<div class="zteam-loader" style="display: none;">
+						<span class="spinner is-active"></span>
+						<span class="loader-text"><?php esc_html_e( 'Processing...', 'teamzone' ); ?></span>
+					</div>
+
+					<?php wp_nonce_field( 'team_dummy_data_action', 'team_dummy_data_nonce' ); ?>
 				</div>
 			</div>
 		</div>
 		<?php
+	}
+
+	/**
+	 * AJAX handler for importing data.
+	 */
+	public function ajax_import_data() {
+		check_ajax_referer( 'team_dummy_data_action', 'security' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'teamzone' ) ) );
+		}
+
+		$this->import_dummy_data();
+
+		wp_send_json_success(
+			array(
+				'message' => __( 'Dummy data imported successfully.', 'teamzone' ),
+			)
+		);
+	}
+
+	/**
+	 * AJAX handler for removing data.
+	 */
+	public function ajax_remove_data() {
+		check_ajax_referer( 'team_dummy_data_action', 'security' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'teamzone' ) ) );
+		}
+
+		$this->remove_dummy_data();
+
+		wp_send_json_success(
+			array(
+				'message' => __( 'All dummy data removed successfully.', 'teamzone' ),
+			)
+		);
 	}
 
 	/**

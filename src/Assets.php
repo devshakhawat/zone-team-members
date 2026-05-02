@@ -45,6 +45,15 @@ class Assets {
 					ZTEAM_VERSION,
 					true
 				);
+
+				wp_localize_script(
+					'team-member-admin',
+					'zteam_admin',
+					array(
+						'ajaxurl' => admin_url( 'admin-ajax.php' ),
+						'nonce'   => wp_create_nonce( 'team_dummy_data_action' ),
+					)
+				);
 			}
 		}
 	}
