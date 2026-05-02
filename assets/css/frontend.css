@@ -4,9 +4,21 @@
 
 .team-members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(1, 1fr);
     gap: 30px;
     margin-bottom: 30px;
+}
+
+@media (min-width: 600px) {
+    .team-members-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .team-members-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .team-member-item {
