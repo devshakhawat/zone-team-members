@@ -51,7 +51,7 @@ class PostType {
 			'show_ui'            => true,
 			'show_in_menu'       => true,
 			'query_var'          => true,
-			'rewrite'            => array( 'slug' => 'team-member' ),
+			'rewrite'            => array( 'slug' => 'team-members' ),
 			'capability_type'    => 'post',
 			'has_archive'        => true,
 			'hierarchical'       => false,
